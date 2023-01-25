@@ -1,15 +1,17 @@
-import React from 'react'
-import TodoItem from './TodoItem'
+import React from 'react';
+import TodoItem from './TodoItem';
+import './css/TodoMain.css';
 
-const TodoMain = () => {
+const TodoMain = ({ todoList }) => {
+
+  const { id } = todoList;  
   return (
     <ul className="todo-list">
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {
+            todoList.map(todo => <TodoItem key={id} todo={todo} />)
+        }
     </ul>
-  )
-}
+  );
+};
 
-export default TodoMain
+export default TodoMain;

@@ -1,14 +1,18 @@
 import React from 'react';
-import { MdDone, MdDelete } from 'react-icons/md'
-import './css/TodoItem.css'
+import { MdDone, MdDelete } from 'react-icons/md';
+import './css/TodoItem.css';
+import cn from "classnames"
 
-const TodoItem = () => {
+const TodoItem = ({ todo }) => {
+
+  const {title, done} = todo;  
+
   return (
     <li className="todo-item">
-        <div className="check-circle">
-            <MdDone />
+        <div className={cn('check-circle', {active: done})}>
+            {done && <MdDone />}
         </div>
-        <span className="text">할 일 텍스트</span>
+        <span className={cn('text', {finish: done})}>{title}</span>
         <div className="remove">
             <MdDelete />
         </div>

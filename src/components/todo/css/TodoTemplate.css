@@ -3,7 +3,6 @@
     width: 512px;
     height: 768px;
     border-radius: 16px;
-    /* border: 1px solid #000 ; */
 
     /* 음영처리 */
     /* x축,y축,블러크기,색상 */
@@ -13,4 +12,7 @@
     margin: 100px auto;
 
     position: relative;
+
+    display: flex;
+    flex-direction: column;
 }
