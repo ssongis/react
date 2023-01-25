@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 // css 로딩
 import './css/TodoTemplate.css';
@@ -15,13 +15,16 @@ const TodoTemplate = () => {
 
   // 할 일 등록 서버 요청
   const addTodo = (todo) => {
+
     fetch(API_BASE_URL, {
         method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(todo) // todo를 input한테 받아와야 함
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(todo)
     })
     .then(res => res.json())
-    .then(result => {setTodos(result.todos)});
+    .then(result => {
+        setTodos(result.todos);
+    });
   };
 
   // 할 일 삭제 요청 처리
@@ -35,6 +38,21 @@ const TodoTemplate = () => {
         setTodos(result.todos);
     });
   };
+
+  // 할 일 수정 요청 처리
+  const updateTodo = todo => {
+
+    fetch(`${API_BASE_URL}/${todo.id}`, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(todo)
+    })
+    .then(res => res.json())
+    .then(result => {
+        setTodos(result.todos);
+    });
+  };
+
 
   // 렌더링되자마자 할 일 => todos api GET 목록 호출
   useEffect(() => {
@@ -52,10 +70,14 @@ const TodoTemplate = () => {
   return (
     <div className="todo-template">
         <TodoHeader todoList={todos} />
-        <TodoMain todoList={todos} remove={deleteTodo} />
-        <TodoInput add={addTodo}/>
+        <TodoMain 
+            todoList={todos} 
+            remove={deleteTodo} 
+            update={updateTodo} 
+        />
+        <TodoInput add={addTodo} />
     </div>
-  )
-}
+  );
+};
 
-export default TodoTemplate
+export default TodoTemplate;
