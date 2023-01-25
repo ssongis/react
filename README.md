@@ -15,8 +15,13 @@ $ npx create-react-app 프로젝트이름
 ```
 $ cd 프로젝트폴더
 $ npm start
+
+5. 추가 라이브러리
 ```
+$ npm install react-icons classnames
+``````
 - http://localhost:3000 에서 프론트엔드 서버 실행
+
 
 
 --public: 정적 파일(로고 이미지 등), index.html 웬만하면 건들지x
